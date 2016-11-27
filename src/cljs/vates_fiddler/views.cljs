@@ -7,40 +7,30 @@
               [vates-fiddler.components :as cmp]
               [reagent.core :as reagent]))
 
-
-
-
-
-
-
-
 ;; home
 
-(defn home-title []
+(defn home-panel []
   (let [name (re-frame/subscribe [:name])]
     (fn []
-      [:div.h1
-       [re-com/title
-        :label (str "Hello from " @name ". This is the Home Page.")
-        :level :level1]])))
-
-(defn home-panel []
-  [:div
-   [:div.h1 "This is Home."]
-   [:a.p1 {:href "#/assets"} "got to assets page "]
-   [:a.p1  {:href "#/about"} "got to about page "]
-   [:div (lorem/create-lorem "2p")]])
+      [:div
+       [:a.p1 {:href "#/assets"} "got to assets page "]
+       [:a.p1  {:href "#/about"} "got to about page "]
+       [:div.h1.p2 (str @name ", this is Home.")]
+       [:div.p2 (lorem/create-lorem "2p")]])))
 
 (defn about-panel []
   [:div
-   [:div "This is the About Page."]
-   [:a.btn.btn-outline {:href "#/"} "got to home page"]])
+   [:a.p1 {:href "#/"} "got to home page"]
+   [:div.p2 "This is the About Page."]])
 
 
 (defn assets-panel []
   [:div
-   [:div [cmp/home]
-    [:div.mb1 [:a {:href "#/"} "go to home page"]]]])
+   [:a.p1 {:href "#/"} "go to home page"]
+   [:div [cmp/home]]
+   [:div [cmp/home]]
+   [:div [cmp/home]]
+   [:div [cmp/home]]])
 
 
 (defmulti panels identity)
@@ -52,11 +42,6 @@
 (defn show-panel
   [panel-name]
   [panels panel-name])
-
-
-
-
-
 
 (defn main-panel []
   (let [active-panel (re-frame/subscribe [:active-panel])]
