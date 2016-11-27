@@ -3,7 +3,15 @@
               [re-com.core :as re-com]
               [re-com.core   :refer [h-box v-box box gap line input-text input-textarea label checkbox radio-button slider title p]]
               [re-com.misc   :refer [input-text-args-desc]]
-              [vates-fiddler.lorem :as lorem]))
+              [vates-fiddler.lorem :as lorem]
+              [vates-fiddler.components :as cmp]
+              [reagent.core :as reagent]))
+
+
+
+
+
+
 
 
 ;; home
@@ -28,12 +36,12 @@
    [:div "This is the About Page."]
    [:a.btn.btn-outline {:href "#/"} "got to home page"]])
 
+
 (defn assets-panel []
   [:div
-   [:div "Assets"
+   [:div [cmp/home]
     [:div.mb1 [:a {:href "#/"} "go to home page"]]]])
 
-;; Main
 
 (defmulti panels identity)
 (defmethod panels :home-panel [] [home-panel])
@@ -44,6 +52,11 @@
 (defn show-panel
   [panel-name]
   [panels panel-name])
+
+
+
+
+
 
 (defn main-panel []
   (let [active-panel (re-frame/subscribe [:active-panel])]
