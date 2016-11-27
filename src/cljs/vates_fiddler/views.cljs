@@ -13,20 +13,20 @@
   (let [name (re-frame/subscribe [:name])]
     (fn []
       [:div
-       [:a.p1 {:href "#/assets"} "got to assets page "]
-       [:a.p1  {:href "#/about"} "got to about page "]
+       [:a.p1 {:href "#/assets"} "goto assets page "]
+       [:a.p1  {:href "#/about"} "goto about page "]
        [:div.h1.p2 (str @name ", this is Home.")]
        [:div.p2 (lorem/create-lorem "2p")]])))
 
 (defn about-panel []
   [:div
-   [:a.p1 {:href "#/"} "got to home page"]
+   [:a.p1 {:href "#/"} "goto home page"]
    [:div.p2 "This is the About Page."]])
 
 
 (defn assets-panel []
   [:div
-   [:a.p1 {:href "#/"} "go to home page"]
+   [:a.p1 {:href "#/"} "goto home page"]
    [:div [cmp/home]]
    [:div [cmp/home]]
    [:div [cmp/home]]
