@@ -4,7 +4,8 @@
               [re-com.core   :refer [h-box v-box box gap line input-text input-textarea label checkbox radio-button slider title p]]
               [re-com.misc   :refer [input-text-args-desc]]
               [vates-fiddler.lorem :as lorem]
-              [vates-fiddler.components :as cmp]
+              [vates-fiddler.cmphighchart :as cmp-hc]
+              [vates-fiddler.cmpstockchart :as cmp-sc]
               [reagent.core :as reagent]))
 
 ;; home
@@ -26,11 +27,10 @@
 
 (defn assets-panel []
   [:div
-   [:a.p1 {:href "#/"} "goto home page"]
-   [:div [cmp/home]]
-   [:div [cmp/home]]
-   [:div [cmp/home]]
-   [:div [cmp/home]]])
+   [:a.p1 {:href "#/"} "gogo home page"]
+   [:div [cmp-sc/class]]
+   ;; [:div [cmp-hc/class]]
+   ])
 
 
 (defmulti panels identity)
