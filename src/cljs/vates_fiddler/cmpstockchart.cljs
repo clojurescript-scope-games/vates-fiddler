@@ -1,13 +1,20 @@
 (ns vates-fiddler.cmpstockchart
     (:require [reagent.core :as reagent]))
 
-(def chart-config
+;; (def chart-config
+;;   {:rangeSelector {:selected 1},
+;;    :title {:text "Stick Price"}
+;;    :series [{:name 'BiatschTec'
+;;              :data [[1259625600000,28.14]
+;;                     [1259712000000,28.03]
+;;                     [1259798400000,28.07]],
+;;              :tooltip {:valueDecimals 2}}] })
+
+(defn chart-config [data]
   {:rangeSelector {:selected 1},
-   :title {:text "Stick Price"}
+   :title {:text "Stock Price"}
    :series [{:name 'BiatschTec'
-             :data [[1259625600000,28.14]
-                    [1259712000000,28.03]
-                    [1259798400000,28.07]],
+             :data data,
              :tooltip {:valueDecimals 2}}] })
 
 (defn cs-render []
@@ -16,10 +23,9 @@
 
 (defn cs-did-mount [this]
   (js/Highcharts.stockChart. (reagent/dom-node this)
-                        (clj->js chart-config)))
-
-(defn fasdfsd [this]
-  ())
+                             (clj->js ( chart-config [[1259625600000,28.14]
+                                                      [1259712000000,28.03]
+                                                      [1259798400000,28.07]]))))
 
 (defn class[]
   (reagent/create-class {:reagent-render cs-render
